@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+<xacro:property name="wheel_radius" value="0.10"/>
+<xacro:property name="wheel_width" value="0.04"/>
+<xacro:property name="wheel_ygap" value="0.025"/>
+<xacro:property name="wheel_zoff" value="0.05"/>
+<xacro:property name="wheel_xoff" value="0.12"/>
+
+
+<!-- wheels -->
+
+    <link name="drivewhl_l_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="Gray">
+          <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="$drivewhl_l_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="drivewhl_l_link"/>
+      <origin xyz="${-1*wheel_xoff} ${1*(base_width/2+wheel_ygap)} ${-wheel_zoff}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="drivewhl_r_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="Gray">
+          <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="$drivewhl_r_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="drivewhl_r_link"/>
+      <origin xyz="${-1*wheel_xoff} ${1*(base_width/2+wheel_ygap)} ${-wheel_zoff}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    
+<!-- 
+  <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
+  <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" /> -->
+
+
+  </robot>
